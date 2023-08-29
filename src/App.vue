@@ -1,26 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <h1>Welcome to Your Vue.js App</h1>
+  <base-modal
+    title="Title from Component"
+    content="This is content"
+    theme="sales"
+    v-if="isShowModal"
+    @close="onToggleModel"
+  >
+    <template v-slot:header>
+      <h2>This is Title</h2>
+    </template>
+    <label for="">Name</label>
+    <input type="password" />
+    <template v-slot:footer>
+      <h2>This is Footer</h2>
+    </template>
+  </base-modal>
+  <button @click="onToggleModel">Toggle Model</button>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+// import HelloWorld from "./components/HelloWorld.vue";
+import Modal from "./components/Modal.vue";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    BaseModal: Modal,
+  },
+  data() {
+    return {
+      isShowModal: false,
+    };
+  },
+  methods: {
+    onToggleModel() {
+      this.isShowModal = !this.isShowModal;
+    },
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<!-- <style>
+</style> -->
